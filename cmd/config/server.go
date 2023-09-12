@@ -15,7 +15,7 @@ var (
 	StartCmd  = &cobra.Command{
 		Use:     "config",
 		Short:   "Get Application config info",
-		Example: "go-admin config -c config/settings.yml",
+		Example: "eth-scan config -c config/settings.yml",
 		Run: func(cmd *cobra.Command, args []string) {
 			run()
 		},
