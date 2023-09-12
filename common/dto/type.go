@@ -1,8 +1,8 @@
 package dto
 
 import (
+	"eth-scan/common/models"
 	"github.com/gin-gonic/gin"
-	"go-admin/common/models"
 )
 
 type Index interface {

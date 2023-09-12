@@ -1,9 +1,9 @@
 package dto
 
 import (
-	"go-admin/app/admin/models"
-	"go-admin/common/dto"
-	common "go-admin/common/models"
+	"eth-scan/app/admin/models"
+	"eth-scan/common/dto"
+	common "eth-scan/common/models"
 )
 
 // SysApiGetPageReq 功能列表请求参数

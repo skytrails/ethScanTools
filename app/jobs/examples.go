@@ -3,13 +3,13 @@ package jobs
 import (
 	"crypto/ecdsa"
 	"encoding/hex"
+	models2 "eth-scan/app/jobs/models"
+	"eth-scan/common/models"
 	"fmt"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	log "github.com/go-admin-team/go-admin-core/logger"
 	"github.com/go-admin-team/go-admin-core/sdk"
-	models2 "go-admin/app/jobs/models"
-	"go-admin/common/models"
 	"math/rand"
 	"time"
 )

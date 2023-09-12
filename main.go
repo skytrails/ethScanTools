@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-admin/cmd"
+	"eth-scan/cmd"
 )
 
 //go:generate swag init --parseDependency --parseDepth=6 --instanceName admin -o ./docs/admin

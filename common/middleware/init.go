@@ -1,10 +1,10 @@
 package middleware
 
 import (
+	"eth-scan/common/actions"
 	"github.com/gin-gonic/gin"
 	"github.com/go-admin-team/go-admin-core/sdk"
 	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"go-admin/common/actions"
 )
 
 const (

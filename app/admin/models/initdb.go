@@ -1,8 +1,8 @@
 package models
 
 import (
+	"eth-scan/common/global"
 	"fmt"
-	"go-admin/common/global"
 	"gorm.io/gorm"
 	"io/ioutil"
 	"log"

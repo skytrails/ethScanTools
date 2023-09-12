@@ -1,12 +1,12 @@
 package tools
 
 import (
-	common "go-admin/common/models"
+	common "eth-scan/common/models"
 	"strings"
 
 	"gorm.io/gorm"
 
-	"go-admin/app/admin/models"
+	"eth-scan/app/admin/models"
 )
 
 type SysTables struct {

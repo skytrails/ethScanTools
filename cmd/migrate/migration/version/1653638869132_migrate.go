@@ -1,13 +1,13 @@
 package version
 
 import (
-	"go-admin/cmd/migrate/migration/models"
-	common "go-admin/common/models"
+	"eth-scan/cmd/migrate/migration/models"
+	common "eth-scan/common/models"
 	"gorm.io/gorm"
 	"runtime"
 	"strconv"
 
-	"go-admin/cmd/migrate/migration"
+	"eth-scan/cmd/migrate/migration"
 )
 
 func init() {

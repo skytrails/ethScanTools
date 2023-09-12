@@ -1,7 +1,7 @@
 package models
 
 import (
-	"go-admin/common/models"
+	"eth-scan/common/models"
 )
 
 type SysDictType struct {

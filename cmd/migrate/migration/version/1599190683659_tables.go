@@ -4,9 +4,9 @@ import (
 	"github.com/go-admin-team/go-admin-core/sdk/config"
 	"runtime"
 
-	"go-admin/cmd/migrate/migration"
-	"go-admin/cmd/migrate/migration/models"
-	common "go-admin/common/models"
+	"eth-scan/cmd/migrate/migration"
+	"eth-scan/cmd/migrate/migration/models"
+	common "eth-scan/common/models"
 
 	"gorm.io/gorm"
 )

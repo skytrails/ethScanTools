@@ -3,7 +3,7 @@ package dto
 import (
 	"time"
 
-	"go-admin/common/dto"
+	"eth-scan/common/dto"
 )
 
 type SysLoginLogGetPageReq struct {

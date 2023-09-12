@@ -1,12 +1,12 @@
 package dto
 
 import (
+	"eth-scan/app/jobs/models"
 	"github.com/gin-gonic/gin"
 	"github.com/go-admin-team/go-admin-core/sdk/api"
-	"go-admin/app/jobs/models"
 
-	"go-admin/common/dto"
-	common "go-admin/common/models"
+	"eth-scan/common/dto"
+	common "eth-scan/common/models"
 )
 
 type SysJobSearch struct {

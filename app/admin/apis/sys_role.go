@@ -1,21 +1,21 @@
 package apis
 
 import (
+	"eth-scan/common/global"
 	"fmt"
-	"go-admin/common/global"
 	"net/http"
 
+	"eth-scan/app/admin/models"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-admin-team/go-admin-core/sdk"
-	"go-admin/app/admin/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-admin-team/go-admin-core/sdk/api"
 	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
 	_ "github.com/go-admin-team/go-admin-core/sdk/pkg/response"
 
-	"go-admin/app/admin/service"
-	"go-admin/app/admin/service/dto"
+	"eth-scan/app/admin/service"
+	"eth-scan/app/admin/service/dto"
 )
 
 type SysRole struct {

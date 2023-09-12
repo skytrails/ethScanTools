@@ -12,12 +12,12 @@ import (
 	"github.com/go-admin-team/go-admin-core/config/source/file"
 	"github.com/spf13/cobra"
 
+	"eth-scan/cmd/migrate/migration"
+	_ "eth-scan/cmd/migrate/migration/version"
+	_ "eth-scan/cmd/migrate/migration/version-local"
+	"eth-scan/common/database"
+	"eth-scan/common/models"
 	"github.com/go-admin-team/go-admin-core/sdk/config"
-	"go-admin/cmd/migrate/migration"
-	_ "go-admin/cmd/migrate/migration/version"
-	_ "go-admin/cmd/migrate/migration/version-local"
-	"go-admin/common/database"
-	"go-admin/common/models"
 )
 
 var (
@@ -28,7 +28,7 @@ var (
 	StartCmd  = &cobra.Command{
 		Use:     "migrate",
 		Short:   "Initialize the database",
-		Example: "go-admin migrate -c config/settings.yml",
+		Example: "eth-scan migrate -c config/settings.yml",
 		Run: func(cmd *cobra.Command, args []string) {
 			run()
 		},

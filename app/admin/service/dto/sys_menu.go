@@ -1,10 +1,10 @@
 package dto
 
 import (
-	"go-admin/app/admin/models"
-	common "go-admin/common/models"
+	"eth-scan/app/admin/models"
+	common "eth-scan/common/models"
 
-	"go-admin/common/dto"
+	"eth-scan/common/dto"
 )
 
 // SysMenuGetPageReq 列表或者搜索使用结构体

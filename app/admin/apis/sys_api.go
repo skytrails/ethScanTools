@@ -7,10 +7,10 @@ import (
 	"github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth/user"
 	_ "github.com/go-admin-team/go-admin-core/sdk/pkg/response"
 
-	"go-admin/app/admin/models"
-	"go-admin/app/admin/service"
-	"go-admin/app/admin/service/dto"
-	"go-admin/common/actions"
+	"eth-scan/app/admin/models"
+	"eth-scan/app/admin/service"
+	"eth-scan/app/admin/service/dto"
+	"eth-scan/common/actions"
 )
 
 type SysApi struct {

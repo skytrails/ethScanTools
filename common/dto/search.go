@@ -1,8 +1,8 @@
 package dto
 
 import (
+	"eth-scan/common/global"
 	"github.com/go-admin-team/go-admin-core/tools/search"
-	"go-admin/common/global"
 	"gorm.io/gorm"
 )
 

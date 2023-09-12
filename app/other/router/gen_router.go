@@ -1,10 +1,10 @@
 package router
 
 import (
+	"eth-scan/app/admin/apis"
+	"eth-scan/app/other/apis/tools"
 	"github.com/gin-gonic/gin"
 	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"go-admin/app/admin/apis"
-	"go-admin/app/other/apis/tools"
 )
 
 func init() {

@@ -1,7 +1,7 @@
 package router
 
 import (
-	"go-admin/app/admin/apis"
+	"eth-scan/app/admin/apis"
 	"mime"
 
 	"github.com/go-admin-team/go-admin-core/sdk/config"
@@ -13,9 +13,9 @@ import (
 
 	swaggerfiles "github.com/swaggo/files"
 
-	"go-admin/common/middleware"
-	"go-admin/common/middleware/handler"
-	_ "go-admin/docs/admin"
+	"eth-scan/common/middleware"
+	"eth-scan/common/middleware/handler"
+	_ "eth-scan/docs/admin"
 )
 
 func InitSysRouter(r *gin.Engine, authMiddleware *jwt.GinJWTMiddleware) *gin.RouterGroup {

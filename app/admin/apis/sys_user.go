@@ -1,8 +1,8 @@
 package apis
 
 import (
+	"eth-scan/app/admin/models"
 	"github.com/gin-gonic/gin/binding"
-	"go-admin/app/admin/models"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 
@@ -12,9 +12,9 @@ import (
 	_ "github.com/go-admin-team/go-admin-core/sdk/pkg/response"
 	"github.com/google/uuid"
 
-	"go-admin/app/admin/service"
-	"go-admin/app/admin/service/dto"
-	"go-admin/common/actions"
+	"eth-scan/app/admin/service"
+	"eth-scan/app/admin/service/dto"
+	"eth-scan/common/actions"
 )
 
 type SysUser struct {

@@ -18,15 +18,15 @@ import (
 	"github.com/go-admin-team/go-admin-core/sdk/pkg"
 	"github.com/spf13/cobra"
 
-	"go-admin/app/admin/models"
-	"go-admin/app/admin/router"
-	"go-admin/app/jobs"
-	"go-admin/common/database"
-	"go-admin/common/global"
-	common "go-admin/common/middleware"
-	"go-admin/common/middleware/handler"
-	"go-admin/common/storage"
-	ext "go-admin/config"
+	"eth-scan/app/admin/models"
+	"eth-scan/app/admin/router"
+	"eth-scan/app/jobs"
+	"eth-scan/common/database"
+	"eth-scan/common/global"
+	common "eth-scan/common/middleware"
+	"eth-scan/common/middleware/handler"
+	"eth-scan/common/storage"
+	ext "eth-scan/config"
 )
 
 var (
@@ -35,7 +35,7 @@ var (
 	StartCmd  = &cobra.Command{
 		Use:          "server",
 		Short:        "Start API server",
-		Example:      "go-admin server -c config/settings.yml",
+		Example:      "eth-scan server -c config/settings.yml",
 		SilenceUsage: true,
 		PreRun: func(cmd *cobra.Command, args []string) {
 			setup()

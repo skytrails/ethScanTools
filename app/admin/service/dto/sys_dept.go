@@ -1,8 +1,8 @@
 package dto
 
 import (
-	"go-admin/app/admin/models"
-	common "go-admin/common/models"
+	"eth-scan/app/admin/models"
+	common "eth-scan/common/models"
 )
 
 // SysDeptGetPageReq 列表或者搜索使用结构体

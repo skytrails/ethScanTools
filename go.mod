@@ -1,4 +1,4 @@
-module go-admin
+module eth-scan
 
 go 1.18
 

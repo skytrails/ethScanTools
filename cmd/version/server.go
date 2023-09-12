@@ -1,16 +1,16 @@
 package version
 
 import (
+	"eth-scan/common/global"
 	"fmt"
 	"github.com/spf13/cobra"
-	"go-admin/common/global"
 )
 
 var (
 	StartCmd = &cobra.Command{
 		Use:     "version",
 		Short:   "Get version info",
-		Example: "go-admin version",
+		Example: "eth-scan version",
 		PreRun: func(cmd *cobra.Command, args []string) {
 
 		},

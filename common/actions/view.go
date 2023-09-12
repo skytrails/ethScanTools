@@ -10,8 +10,8 @@ import (
 	"github.com/go-admin-team/go-admin-core/sdk/pkg"
 	"gorm.io/gorm"
 
-	"go-admin/common/dto"
-	"go-admin/common/models"
+	"eth-scan/common/dto"
+	"eth-scan/common/models"
 )
 
 // ViewAction 通用详情动作

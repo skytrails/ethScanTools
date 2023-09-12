@@ -1,13 +1,13 @@
 package router
 
 import (
+	"eth-scan/app/jobs/apis"
+	models2 "eth-scan/app/jobs/models"
+	dto2 "eth-scan/app/jobs/service/dto"
+	"eth-scan/common/actions"
+	"eth-scan/common/middleware"
 	"github.com/gin-gonic/gin"
 	jwt "github.com/go-admin-team/go-admin-core/sdk/pkg/jwtauth"
-	"go-admin/app/jobs/apis"
-	models2 "go-admin/app/jobs/models"
-	dto2 "go-admin/app/jobs/service/dto"
-	"go-admin/common/actions"
-	"go-admin/common/middleware"
 )
 
 func init() {

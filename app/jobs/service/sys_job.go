@@ -7,9 +7,9 @@ import (
 	"github.com/go-admin-team/go-admin-core/sdk/service"
 	"github.com/robfig/cron/v3"
 
-	"go-admin/app/jobs"
-	"go-admin/app/jobs/models"
-	"go-admin/common/dto"
+	"eth-scan/app/jobs"
+	"eth-scan/app/jobs/models"
+	"eth-scan/common/dto"
 )
 
 type SysJob struct {
