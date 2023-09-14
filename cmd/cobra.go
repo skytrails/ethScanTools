@@ -3,6 +3,7 @@ package cmd
 import (
 	"errors"
 	"eth-scan/cmd/app"
+	"eth-scan/cmd/scan"
 	"eth-scan/common/global"
 	"fmt"
 	"github.com/go-admin-team/go-admin-core/sdk/pkg"
@@ -43,6 +44,7 @@ func tip() {
 
 func init() {
 	rootCmd.AddCommand(api.StartCmd)
+	rootCmd.AddCommand(scan.StartCmd)
 	rootCmd.AddCommand(migrate.StartCmd)
 	rootCmd.AddCommand(version.StartCmd)
 	rootCmd.AddCommand(config.StartCmd)
