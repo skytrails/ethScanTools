@@ -1,6 +1,6 @@
 FROM golang:alpine as builder
 
-MAINTAINER lwnmengjing
+MAINTAINER flynn
 
 ENV GOPROXY https://goproxy.cn/
 
@@ -13,16 +13,18 @@ RUN go mod tidy
 COPY . .
 RUN pwd && ls
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o go-admin .
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -a -installsuffix cgo -o eth-scan .
 
 FROM alpine
 
-COPY --from=builder /go/release/go-admin /
+COPY --from=builder /go/release/eth-scan /
 
-COPY --from=builder /go/release/config/settings.yml /config/settings.yml
+#COPY --from=builder /go/release/config/settings.gen.yml /config/settings.gen.yml
+#COPY --from=builder /go/release/config/settings.scan.yml /config/settings.scan.yml
 
 #COPY --from=builder /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 EXPOSE 8000
 
-CMD ["/go-admin","server","-c", "/config/settings.yml"]
+#CMD ["/eth-scan","scan","-c", "/config/settings.scan.yml"]
+CMD ["/eth-scan","gen","-c", "/config/settings.gen.yml"]

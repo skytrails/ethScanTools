@@ -3,6 +3,8 @@ package models
 import (
 	"eth-scan/common/models"
 	"gorm.io/gorm"
+	"strconv"
+	"time"
 )
 
 type EthAccountMap struct {
@@ -35,11 +37,18 @@ func (e *EthAccountMap) SetUpdateBy(updateBy int) {
 	//e.UpdateBy = updateBy
 }
 
-func (e *EthAccountMap) GetList(tx *gorm.DB, list interface{}) (err error) {
-	return tx.Table(e.TableName()).Where("deleted is null").Limit(50).Find(list).Error
+// GetListNotDeleted 获取标记删除的记录
+func (e *EthAccountMap) GetListNotDeleted(tx *gorm.DB, list interface{}) (err error) {
+	return tx.Table(e.TableName()).Where("deleted_at is null").Limit(500).Find(list).Error
 }
 
 // GetListBalanceLimit 获取未更新余额的以太地址记录
+//
+//	@Description:
+//	@receiver e
+//	@param tx
+//	@param list
+//	@return err
 func (e *EthAccountMap) GetListBalanceLimit(tx *gorm.DB, list interface{}) (err error) {
 	return tx.Table(e.TableName()).Where("balance is null").Limit(5).Find(list).Error
 }
@@ -49,8 +58,14 @@ func (e *EthAccountMap) Update(tx *gorm.DB, id interface{}) (err error) {
 	return tx.Table(e.TableName()).Where(id).Updates(&e).Error
 }
 
-func (e *EthAccountMap) RemoveAll(tx *gorm.DB) (err error) {
-	tx.Exec("delete from " + e.TableName())
+func (e *EthAccountMap) LogicDelete(tx *gorm.DB) (err error) {
+	e.DeletedAt = gorm.DeletedAt{Time: time.Now(), Valid: true}
+	return tx.Save(e).Error
+}
+
+func (e *EthAccountMap) Delete(tx *gorm.DB) (err error) {
+	//tx.Table(e.TableName()).Where("id = ?", e.Id).Delete(e)
+	tx.Exec("delete from " + e.TableName() + " where id = " + strconv.Itoa(e.Id))
 	return
 }
 

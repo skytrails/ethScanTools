@@ -36,7 +36,11 @@ func (e *EthAccountMap) SetUpdateBy(updateBy int) {
 }
 
 func (e *EthAccountMap) GetList(tx *gorm.DB, list interface{}) (err error) {
-	return tx.Table(e.TableName()).Where("deleted is null").Limit(50).Find(list).Error
+	return tx.Table(e.TableName()).Find(list).Error
+}
+
+func (e *EthAccountMap) GetListExist(tx *gorm.DB, addresses interface{}, list interface{}) (err error) {
+	return tx.Table(e.TableName()).Where("address in (?)", addresses).Find(list).Error
 }
 
 // GetListBalanceLimit 获取未更新余额的以太地址记录

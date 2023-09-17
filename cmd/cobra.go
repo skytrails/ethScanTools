@@ -3,6 +3,8 @@ package cmd
 import (
 	"errors"
 	"eth-scan/cmd/app"
+	copy2 "eth-scan/cmd/copy"
+	"eth-scan/cmd/generate"
 	"eth-scan/cmd/scan"
 	"eth-scan/common/global"
 	"fmt"
@@ -45,6 +47,8 @@ func tip() {
 func init() {
 	rootCmd.AddCommand(api.StartCmd)
 	rootCmd.AddCommand(scan.StartCmd)
+	rootCmd.AddCommand(copy2.StartCmd)
+	rootCmd.AddCommand(generate.StartCmd)
 	rootCmd.AddCommand(migrate.StartCmd)
 	rootCmd.AddCommand(version.StartCmd)
 	rootCmd.AddCommand(config.StartCmd)

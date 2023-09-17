@@ -1,7 +1,6 @@
-package scan
+package generate
 
 import (
-	"eth-scan/cmd/scan/models"
 	"eth-scan/common/database"
 	"eth-scan/common/storage"
 	ext "eth-scan/config"
@@ -16,9 +15,9 @@ import (
 var (
 	configYml string
 	StartCmd  = &cobra.Command{
-		Use:     "scan",
-		Short:   "scan eth balance",
-		Example: "eth-scan scan -c config/settings.yml",
+		Use:     "gen",
+		Short:   "gen  eth",
+		Example: "eth-scan gen -c config/settings.yml",
 		PreRun: func(cmd *cobra.Command, args []string) {
 			setup()
 		},
@@ -29,7 +28,7 @@ var (
 )
 
 func init() {
-	StartCmd.PersistentFlags().StringVarP(&configYml, "scan", "c", "config/settings.yml", "Start server with provided configuration file")
+	StartCmd.PersistentFlags().StringVarP(&configYml, "gen", "c", "config/settings.yml", "Start server with provided configuration file")
 }
 
 func setup() {
@@ -48,19 +47,25 @@ func setup() {
 
 func run() {
 	dbList := sdk.Runtime.GetDb()
-	ethBlockScanRecord := models.EthBlockScanRecord{}
-	var data []models.EthBlockScanRecord
 	for _, db := range dbList {
-		err := ethBlockScanRecord.GetToDoList(db, &data)
-		if err != nil {
-			return
+		for i := 0; i < 4; i++ {
+			go func() {
+				for {
+					err := generateByEth(db)
+					if err != nil {
+					}
+				}
+			}()
 		}
-		for _, d := range data {
-			fmt.Printf("id: %d, start: %d, cur: %d, end: %d\n", d.Id, d.StartBlock, d.CurBlock, d.EndBlock)
-			go scan(db, d.Id, d.CurBlock, d.EndBlock)
+		for i := 0; i < 4; i++ {
+			go func() {
+				for {
+					err := generateByRandom(db)
+					if err != nil {
+					}
+				}
+			}()
 		}
-
-		//go scanBalance(db)
 	}
 
 	fmt.Println("All goroutines completed.")

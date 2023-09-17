@@ -5,7 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type EthAccountMap struct {
+type EthAccountMapTmp struct {
 	Id      int     `json:"id" gorm:"primaryKey;autoIncrement"` // 唯一编码
 	Address string  `json:"address" gorm:"size:255;"`           // 地址
 	Balance float64 `json:"balance" gorm:"decimal(24,6);"`
@@ -14,47 +14,52 @@ type EthAccountMap struct {
 	DataScope string `json:"dataScope" gorm:"-"`
 }
 
-func (*EthAccountMap) TableName() string {
-	return "eth_account_map"
+func (*EthAccountMapTmp) TableName() string {
+	return "eth_account_map_tmp"
 }
 
-func (e *EthAccountMap) Generate() models.ActiveRecord {
+func (e *EthAccountMapTmp) Generate() models.ActiveRecord {
 	o := *e
 	return &o
 }
 
-func (e *EthAccountMap) GetId() interface{} {
+func (e *EthAccountMapTmp) GetId() interface{} {
 	return e.Id
 }
 
-func (e *EthAccountMap) SetCreateBy(createBy int) {
+func (e *EthAccountMapTmp) SetCreateBy(createBy int) {
 	//e.CreateBy = createBy
 }
 
-func (e *EthAccountMap) SetUpdateBy(updateBy int) {
+func (e *EthAccountMapTmp) SetUpdateBy(updateBy int) {
 	//e.UpdateBy = updateBy
 }
 
-func (e *EthAccountMap) GetList(tx *gorm.DB, list interface{}) (err error) {
+func (e *EthAccountMapTmp) GetList(tx *gorm.DB, list interface{}) (err error) {
 	return tx.Table(e.TableName()).Where("deleted is null").Limit(50).Find(list).Error
 }
 
 // GetListBalanceLimit 获取未更新余额的以太地址记录
-func (e *EthAccountMap) GetListBalanceLimit(tx *gorm.DB, list interface{}) (err error) {
+func (e *EthAccountMapTmp) GetListBalanceLimit(tx *gorm.DB, list interface{}) (err error) {
 	return tx.Table(e.TableName()).Where("balance is null").Limit(5).Find(list).Error
 }
 
 // Update 更新EthAccountMap
-func (e *EthAccountMap) Update(tx *gorm.DB, id interface{}) (err error) {
+func (e *EthAccountMapTmp) Update(tx *gorm.DB, id interface{}) (err error) {
 	return tx.Table(e.TableName()).Where(id).Updates(&e).Error
 }
 
-func (e *EthAccountMap) RemoveAll(tx *gorm.DB) (err error) {
+func (e *EthAccountMapTmp) RemoveAll(tx *gorm.DB) (err error) {
 	tx.Exec("delete from " + e.TableName())
 	return
 }
 
-func (e *EthAccountMap) CreateInBatches(tx *gorm.DB, list interface{}) (err error) {
+func (e *EthAccountMapTmp) CreateInBatches(tx *gorm.DB, list interface{}) (err error) {
 	tx.CreateInBatches(list, 500)
+	return
+}
+
+func (e *EthAccountMapTmp) Create(tx *gorm.DB, value interface{}) (err error) {
+	tx.Table(e.TableName()).Create(value)
 	return
 }
