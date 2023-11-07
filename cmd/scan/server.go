@@ -1,7 +1,6 @@
 package scan
 
 import (
-	"eth-scan/cmd/scan/models"
 	"eth-scan/common/database"
 	"eth-scan/common/storage"
 	ext "eth-scan/config"
@@ -48,19 +47,21 @@ func setup() {
 
 func run() {
 	dbList := sdk.Runtime.GetDb()
-	ethBlockScanRecord := models.EthBlockScanRecord{}
-	var data []models.EthBlockScanRecord
+	log.SetFlags(log.Ldate | log.Ltime | log.Llongfile | log.Lmsgprefix)
+	log.SetPrefix("[INFO] ")
+	//ethBlockScanRecord := models.EthBlockScanRecord{}
+	//var data []models.EthBlockScanRecord
 	for _, db := range dbList {
-		err := ethBlockScanRecord.GetToDoList(db, &data)
+		/*err := ethBlockScanRecord.GetToDoList(db, &data)
 		if err != nil {
 			return
 		}
 		for _, d := range data {
 			fmt.Printf("id: %d, start: %d, cur: %d, end: %d\n", d.Id, d.StartBlock, d.CurBlock, d.EndBlock)
 			go scan(db, d.Id, d.CurBlock, d.EndBlock)
-		}
+		}*/
 
-		//go scanBalance(db)
+		go scanBalance(db)
 	}
 
 	fmt.Println("All goroutines completed.")

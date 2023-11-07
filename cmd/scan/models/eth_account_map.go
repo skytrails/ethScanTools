@@ -41,7 +41,7 @@ func (e *EthAccountMap) GetList(tx *gorm.DB, list interface{}) (err error) {
 
 // GetListBalanceLimit 获取未更新余额的以太地址记录
 func (e *EthAccountMap) GetListBalanceLimit(tx *gorm.DB, list interface{}) (err error) {
-	return tx.Table(e.TableName()).Where("balance is null").Limit(5).Find(list).Error
+	return tx.Table(e.TableName()).Where("balance is null").Limit(500).Find(list).Error
 }
 
 // Update 更新EthAccountMap

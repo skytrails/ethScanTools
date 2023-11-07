@@ -32,16 +32,22 @@ func scan(db *gorm.DB, id int, cur int, end int) {
 
 // 更新地址余额
 func scanBalance(db *gorm.DB) {
+	log.Println("scanBalance start")
+	var accountCount = 0
+	var contractCount = 0
+	var zeroCount = 0
+
 	for {
+
 		ethAccountMap := models.EthAccountMap{}
 		ethAccountMaps := make([]models.EthAccountMap, 0)
 		err := ethAccountMap.GetListBalanceLimit(db, &ethAccountMaps)
 		if err != nil {
 			return
 		}
-		fmt.Println(ethAccountMaps)
+		//fmt.Println(ethAccountMaps)
 		if len(ethAccountMaps) == 0 {
-			fmt.Println("All Eth Balance updated!")
+			log.Println("All Eth Balance updated!")
 			return
 		}
 
@@ -49,9 +55,17 @@ func scanBalance(db *gorm.DB) {
 			ethValue := getEthValue(row.Address)
 			if ethValue != nil {
 				row.Balance, _ = ethValue.Float64()
+				accountCount++
 			} else {
+				contractCount++
 				row.Balance = -1.0
 			}
+			if row.Balance == 0 {
+				zeroCount++
+				row.Balance = 0.000000001
+			}
+			log.Printf("账户余额: %2.8f", row.Balance)
+			log.Printf("普通账户: %d, 0元账户:%d, 合约账户: %d", accountCount, zeroCount, contractCount)
 			err := row.Update(db, row.Id)
 			if err != nil {
 				return
@@ -139,7 +153,9 @@ func getEthValue(address string) (ethValue *big.Float) {
 	}
 
 	account := common.HexToAddress(address)
-	fmt.Println("address:", address, " account:", account)
+	log.SetPrefix("====================== 当前地址:" + address + " =====================")
+	log.Println("")
+	log.SetPrefix("[INFO] ")
 
 	blockNumber := big.NewInt(18115209)
 	bytecode, err := client.CodeAt(context.Background(), account, blockNumber) // nil is latest block
@@ -149,14 +165,16 @@ func getEthValue(address string) (ethValue *big.Float) {
 
 	isContract := len(bytecode) > 0
 
-	fmt.Printf("is contract: %v\n", isContract)
 	if isContract == true {
-		fmt.Println("这是个合约地址")
+		log.Println("这是个合约地址")
 		return
 	}
+	log.Println("这是个ETH账户")
 	balance, err := client.BalanceAt(context.Background(), account, blockNumber)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		log.Println(balance)
+		return big.NewFloat(999999)
 	}
 	fbalance := new(big.Float)
 	fbalance.SetString(balance.String())
